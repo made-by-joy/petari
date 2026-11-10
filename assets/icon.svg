@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#101A33"/><stop offset=".6" stop-color="#151B3F"/><stop offset="1" stop-color="#2A1F5C"/></linearGradient>
+<linearGradient id="ag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5CF5EA"/><stop offset=".55" stop-color="#5AA2FF"/><stop offset="1" stop-color="#9B7BFF"/></linearGradient>
+<radialGradient id="glowT" cx=".85" cy=".05" r=".8"><stop offset="0" stop-color="#22E3D6" stop-opacity=".55"/><stop offset="1" stop-color="#22E3D6" stop-opacity="0"/></radialGradient>
+<radialGradient id="glowV" cx=".05" cy="1" r=".8"><stop offset="0" stop-color="#7C5CFF" stop-opacity=".6"/><stop offset="1" stop-color="#7C5CFF" stop-opacity="0"/></radialGradient>
+<linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FFBF0"/><stop offset=".5" stop-color="#5AA2FF"/><stop offset="1" stop-color="#A77BFF"/></linearGradient>
+<linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#CFE0FF" stop-opacity=".75"/></linearGradient>
+<filter id="bl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.2"/></filter>
+</defs>
+<rect x="2" y="2" width="60" height="60" rx="15" fill="url(#bg)"/><rect x="2" y="2" width="60" height="60" rx="15" fill="url(#glowT)"/><rect x="2" y="2" width="60" height="60" rx="15" fill="url(#glowV)"/>
+<rect x="2.75" y="2.75" width="58.5" height="58.5" rx="14.3" fill="none" stroke="url(#ag)" stroke-width="1.5" opacity=".9"/>
+<circle cx="32" cy="33" r="19" fill="#5AA2FF" filter="url(#bl)" opacity=".6"/>
+<path d="M32 13a19.5 19.5 0 1 0 19.5 19.5V26L38.5 13z" fill="url(#g3)"/>
+<path d="M38.5 13v8a5 5 0 0 0 5 5h8z" fill="url(#g4)"/>
+</svg>
