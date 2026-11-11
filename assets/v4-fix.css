@@ -1,6 +1,0 @@
-@media (prefers-reduced-motion:no-preference){
-  .reveal{opacity:1;transform:none}
-  .reveal.is-visible{animation:v4-reveal .55s ease both}
-  @keyframes v4-reveal{from{opacity:.45;transform:translateY(12px)}to{opacity:1;transform:none}}
-}
-.x-link::before{content:"𝕏";margin-right:7px}

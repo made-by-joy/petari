@@ -6,3 +6,14 @@
   }), { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(node => observer.observe(node));
 })();
+
+document.querySelectorAll('.mobile-url-copy').forEach(button => {
+  button.addEventListener('click', async () => {
+    const original = button.textContent;
+    try {
+      await navigator.clipboard.writeText(location.href);
+      button.textContent = 'コピーしました';
+      window.setTimeout(() => { button.textContent = original; }, 2000);
+    } catch (_) {}
+  });
+});
