@@ -1,37 +1,25 @@
 (() => {
-  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const video = document.querySelector('video');
-  const syncVideo = () => {
-    video.controls = motion.matches;
-    if (motion.matches) { video.autoplay = false; video.pause(); }
-    else { video.autoplay = true; video.play().catch(() => { video.controls = true; }); }
-  };
-  syncVideo();
-  motion.addEventListener('change', syncVideo);
-  if ('IntersectionObserver' in window && !motion.matches) {
-    const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      }
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  }
-  const dialog = document.querySelector('.image-dialog');
-  const fullImage = dialog.querySelector('img');
-  document.querySelectorAll('[data-zoom]').forEach(link => {
-    link.addEventListener('click', event => {
-      event.preventDefault();
-      fullImage.src = link.href;
-      fullImage.alt = link.dataset.alt || link.querySelector('img').alt;
-      fullImage.removeAttribute('width');
-      fullImage.removeAttribute('height');
-      dialog.showModal();
-      dialog.querySelector('.dialog-scroll').scrollTo(0, 0);
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  // Text stays visible without JavaScript; add only a brief entrance.
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      if (!motion.matches) entry.target.classList.add('is-entering');
+      observer.unobserve(entry.target);
     });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const video = document.querySelector('#demo-video');
+  // 仮: demo.mp4 is a zero-byte slot. Replacing it enables native controls.
+  if (video && location.protocol !== 'file:') {
+    fetch(video.dataset.src, { method: 'HEAD' }).then(response => {
+      if (response.ok && Number(response.headers.get('content-length')) > 0) {
+        video.src = video.dataset.src;
+        video.controls = true;
+      }
+    }).catch(() => {});
+  }
+  motion.addEventListener('change', () => {
+    if (motion.matches && video) video.pause();
   });
-  dialog.querySelector('button').addEventListener('click', () => dialog.close());
-  dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
 })();
